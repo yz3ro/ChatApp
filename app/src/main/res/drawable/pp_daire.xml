@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent" /> <!-- Daire rengini ayarlayın -->
+    <size android:width="120dp" android:height="120dp" /> <!-- Boyutları ayarlayın -->
+    <corners android:radius="78dp" />
+    <stroke android:color="@android:color/black" android:width="2dp" /><!-- Yarıçapı ayarlayarak daire şekli yapın -->
+</shape>

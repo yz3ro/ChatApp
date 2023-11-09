@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "353069488129",
+    "project_id": "chatcraft-655a3",
+    "storage_bucket": "chatcraft-655a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353069488129:android:6f5d5b7969162d481ac800",
+        "android_client_info": {
+          "package_name": "com.yz3ro.chatcraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHj6Eg2dm7RyYq1Rt_F3Ot5c3u7ml34BA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
