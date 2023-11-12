@@ -36,7 +36,9 @@ class rehber_adapter(private val userList: List<User>) : RecyclerView.Adapter<re
             LayoutKisi.setOnClickListener {
                 val context = itemView.context
                 val receiverUID = UserId.text.toString()
+                val ad = ad.text.toString()
                 val intent = Intent(context, ChatActivity::class.java)
+                intent.putExtra("ad",ad)
                 intent.putExtra("receiverUID",receiverUID)
                 context.startActivity(intent)
             }

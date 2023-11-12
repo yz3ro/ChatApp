@@ -15,6 +15,7 @@
         android:theme="@style/Theme.ChatCraft"
         tools:targetApi="31">
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
