@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -20,9 +21,6 @@ class rehber_adapter(private val userList: List<User>) : RecyclerView.Adapter<re
         holder.ad.text = user.ad
         holder.telefon.text = user.telefon
         holder.UserId.text = user.uid
-
-
-
     }
 
     override fun getItemCount(): Int {
@@ -42,6 +40,7 @@ class rehber_adapter(private val userList: List<User>) : RecyclerView.Adapter<re
                 intent.putExtra("receiverUID",receiverUID)
                 context.startActivity(intent)
             }
+
         }
         }
 

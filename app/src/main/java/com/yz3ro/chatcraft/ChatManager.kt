@@ -97,9 +97,4 @@ class ChatManager {
                     }
             }
     }
-
-
-
-
-
 }

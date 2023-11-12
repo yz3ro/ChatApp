@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import com.google.android.play.integrity.internal.e
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hbb20.CountryCodePicker
@@ -45,14 +46,16 @@ class RehberEkleActivity : AppCompatActivity() {
                                         "telefon" to tam_num,
                                         "uid" to uid
                                     )
-
-
                                     db.collection("kullanicilar")
                                         .document(currentUser.uid)
                                         .collection("kisiler")
                                         .add(kisi)
-                                        .addOnSuccessListener { documentReference -> }
-                                        .addOnFailureListener { documentReference -> }
+                                        .addOnSuccessListener { documentReference ->
+                                            Log.d("dönüs", "Veri eklendi. ID: ${documentReference.id}")
+                                        }
+                                        .addOnFailureListener { documentReference ->
+                                            Log.e("dönüs", "Veri eklenirken hata oluştu:")
+                                        }
 
                                 } else {
                                     Log.e("Hata", "Kullanıcı oturumu açık değil veya hata oluştu.")

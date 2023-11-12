@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.*
 
 class RehberActivity : AppCompatActivity() {
@@ -16,6 +18,7 @@ class RehberActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var myAdapter: rehber_adapter
     private lateinit var db : FirebaseFirestore
+    private val currentUser = FirebaseAuth.getInstance().currentUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rehber)
@@ -71,4 +74,5 @@ class RehberActivity : AppCompatActivity() {
 
         }
     }
+
 }
