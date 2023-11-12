@@ -50,7 +50,7 @@ class ChatManager {
             .orderBy("timestamp", Query.Direction.ASCENDING)
             .addSnapshotListener { snapshot1, exception1 ->
                 if (exception1 != null) {
-                    Log.e("ChatManager", "Mesajları dinleme hatası: ${exception1.message}")
+                    Log.e("ChatManager", "Mesajları dinleme hatas: ${exception1.message}")
                     return@addSnapshotListener
                 }
 
