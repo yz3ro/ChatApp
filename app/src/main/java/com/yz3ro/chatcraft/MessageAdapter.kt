@@ -1,6 +1,7 @@
 package com.yz3ro.chatcraft
 
 import Message
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,12 +25,18 @@ class MessageAdapter(var messages: List<Message>) : RecyclerView.Adapter<Message
         val message = messages[position]
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         if (message.senderId == currentUserUid) {
-            holder.messageTextView.text = message.text
-            holder.recMessageTextView.visibility = View.GONE
-        } else {
-            // Mesajı alıcı kişi ise receiverMessageTextView'a yerleştir
+            Log.d("MessageAdapter1", "onBindViewHolder: MessageText=${message.text}")
             holder.recMessageTextView.text = message.text
             holder.messageTextView.visibility = View.GONE
+            holder.recMessageTextView.visibility = View.VISIBLE
+           // görünür yap
+        } else {
+            Log.d("MessageAdapter", "onBindViewHolder: MessageText=${message.text}")
+            // Mesajı alıcı kişi ise
+            holder.messageTextView.text = message.text
+            holder.recMessageTextView.visibility = View.GONE
+            holder.messageTextView.visibility = View.VISIBLE
+            // görünür yap
         }
     }
 
