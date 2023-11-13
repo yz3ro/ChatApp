@@ -36,7 +36,7 @@ class RehberEkleActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty){
-                            Log.d("Hata", "Bu numara ile eşleşen kullanıcı bulunamadı.")
+                            Toast.makeText(this,"Bu numara ile eşleşen kullanıcı bulunamadı .", Toast.LENGTH_SHORT).show()
                         }else {
                             for (document in documents) {
                                 val uid = document.getString("uid")

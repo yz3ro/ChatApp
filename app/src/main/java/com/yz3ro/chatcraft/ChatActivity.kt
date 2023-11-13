@@ -1,5 +1,6 @@
 package com.yz3ro.chatcraft
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -21,6 +22,9 @@ class ChatActivity : AppCompatActivity() {
         val btn_msg = findViewById<ImageView>(R.id.btn_msg)
         val messageRecyclerView: RecyclerView = findViewById(R.id.rec_chat)
         val chat_ad = findViewById<TextView>(R.id.chat_ad)
+        val chat_info = findViewById<ImageView>(R.id.chat_info)
+        val back = findViewById<ImageView>(R.id.back)
+        back.setOnClickListener { onBackPressed() }
         messageAdapter = MessageAdapter(emptyList())
         messageRecyclerView.adapter = messageAdapter
         messageRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -32,12 +36,18 @@ class ChatActivity : AppCompatActivity() {
             messageAdapter.notifyDataSetChanged()
             messageRecyclerView.scrollToPosition(messages.size - 1) // En son mesaja otomatik olarak kaydır
         }
+        chat_info.setOnClickListener {
+            intent = Intent(this,InfoActivity::class.java)
+            intent.putExtra("rec",receiverId)
+            startActivity(intent)
+        }
         btn_msg.setOnClickListener {
             val Et_msg = et_msg.text.toString().trim()
             if (Et_msg.isNotEmpty()) {
                 chatManager.sendMessage(senderId, receiverId, Et_msg)
                 et_msg.text.clear()
             }
+
         }
     }
 }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
@@ -32,7 +31,7 @@ class AyarlarActivity : AppCompatActivity() {
         val cikis = findViewById<ImageButton>(R.id.img_cikis)
         val pp_ad = findViewById<TextView>(R.id.pp_ad)
         val pp_num = findViewById<TextView>(R.id.pp_num)
-        val profil_foto = findViewById<CircleImageView>(R.id.profil_foto) // Profil fotoğrafını göstereceğiniz ImageView
+        val profil_foto = findViewById<CircleImageView>(R.id.info_foto) // Profil fotoğrafını göstereceğiniz ImageView
         val p_duzen = findViewById<Button>(R.id.profil_duzen)
         // Firestore'dan kullanıcı bilgilerini çekme
         val db = FirebaseFirestore.getInstance()
