@@ -26,6 +26,7 @@ class InfoActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userUID = currentUser?.uid
+        val infomsg_del = findViewById<TextView>(R.id.infomsg_del)
         if (userUID != null) {
 
             db.collection("kullanicilar").document(userUID).collection("kisiler")
@@ -43,6 +44,30 @@ class InfoActivity : AppCompatActivity() {
                 .addOnFailureListener{
                     Log.e("Hata", "Veri çekme hatası:")
                 }
+        }
+        infomsg_del.setOnClickListener {
+            val query =  db.collection("chats")
+            query.get()
+                .addOnSuccessListener { documents ->
+                    if(documents.isEmpty()){
+                        Log.d("hata ","sorgu başarısız")
+                    }
+                    else{
+                        for(document in documents){
+                            db.collection("chats").document("$userUID-$rec")
+                                .delete()
+                                .addOnSuccessListener {
+                                    Log.d("Firebase", "Belge başarıyla silindi.")
+                                    intent = Intent(this,RehberActivity::class.java)
+                                    startActivity(intent)
+                                }
+                                .addOnFailureListener { exception ->
+                                    Log.e("Firebase", "Belge silme hatası: ${exception.message}")
+                                }
+                        }
+                    }
+                }
+
         }
         info_del.setOnClickListener {
             if (userUID != null) {
@@ -78,6 +103,8 @@ class InfoActivity : AppCompatActivity() {
                     }
             }
         }
+
+
 
     }
 }
