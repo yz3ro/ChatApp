@@ -24,7 +24,7 @@
         android:textSize="40sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view1"
+        android:id="@+id/rcy_mainmessages"
         android:layout_width="365dp"
         android:layout_height="514dp"
         android:layout_above="@+id/bottomNav"

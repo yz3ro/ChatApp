@@ -33,6 +33,7 @@ class ChatManager {
                     Log.e("ChatManager", "Mesaj ekleme hatası: ${e.message}")
                 }
         }
+        setLastMessageAndTime(senderId, receiverId, text, Date())
     }
 
     fun listenForMessages(
@@ -96,5 +97,27 @@ class ChatManager {
                         listener(filteredMessages)
                     }
             }
+    }
+    fun setLastMessageAndTime(senderId: String, receiverId: String, lastMessage: String, lastMessageTime: Date) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val userUID = currentUser?.uid
+        if (userUID != null) {
+            val chatId = "$senderId-$receiverId"
+
+            val data = hashMapOf(
+                "lastMessage" to lastMessage,
+                "lastMessageTime" to lastMessageTime
+            )
+
+            firestore.collection("chats")
+                .document(chatId)
+                .set(data)
+                .addOnSuccessListener {
+                    Log.d("ChatManager", "setLastMessageAndTime: Last message and time set successfully.")
+                }
+                .addOnFailureListener { e ->
+                    Log.e("ChatManager", "setLastMessageAndTime: ${e.message}")
+                }
+        }
     }
 }

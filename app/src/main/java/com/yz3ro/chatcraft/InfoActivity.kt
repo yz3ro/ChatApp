@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -81,30 +82,39 @@ class InfoActivity : AppCompatActivity() {
                             // Belge bulunamadı
                             Log.d("Firebase", "Belge bulunamadı.")
                         } else {
-                            // Belge bulundu, şimdi silelim
-                            for (document in documents) {
-                                db.collection("kullanicilar").document(userUID).collection("kisiler")
-                                    .document(document.id)
-                                    .delete()
-                                    .addOnSuccessListener {
-                                        Log.d("Firebase", "Belge başarıyla silindi.")
-                                        intent = Intent(this,RehberActivity::class.java)
-                                        startActivity(intent)
-                                    }
-                                    .addOnFailureListener { exception ->
-                                        Log.e("Firebase", "Belge silme hatası: ${exception.message}")
-                                    }
+                            val alertDialogBuilder = AlertDialog.Builder(this)
+                            alertDialogBuilder.setTitle("Silme Onayı")
+                            alertDialogBuilder.setMessage("Kişiyi silmek istediğinize emin misiniz?")
+
+                            // "Evet" butonu
+                            alertDialogBuilder.setPositiveButton("Evet") { _, _ ->
+                                for (document in documents) {
+                                    db.collection("kullanicilar").document(userUID).collection("kisiler")
+                                        .document(document.id)
+                                        .delete()
+                                        .addOnSuccessListener {
+                                            Log.d("Firebase", "Belge başarıyla silindi.")
+                                            intent = Intent(this,RehberActivity::class.java)
+                                            startActivity(intent)
+                                        }
+                                        .addOnFailureListener { exception ->
+                                            Log.e("Firebase", "Belge silme hatası: ${exception.message}")
+                                        }
+                                }
+
                             }
+                            alertDialogBuilder.setNegativeButton("Hayır") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+
+                            val alertDialog = alertDialogBuilder.create()
+                            alertDialog.show() }
                         }
-                    }
                     .addOnFailureListener { exception ->
                         // Sorgu başarısız olduğunda burası çalışır
                         Log.e("Firebase", "Sorgu başarısız: ${exception.message}")
                     }
             }
         }
-
-
-
     }
 }
