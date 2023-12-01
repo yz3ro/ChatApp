@@ -8,6 +8,8 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class rehber_adapter(private val userList: List<User>) : RecyclerView.Adapter<rehber_adapter.MyViewHolder>() {
@@ -21,6 +23,11 @@ class rehber_adapter(private val userList: List<User>) : RecyclerView.Adapter<re
         holder.ad.text = user.ad
         holder.telefon.text = user.telefon
         holder.UserId.text = user.uid
+        user.profilFotoURL?.let { url ->
+            Glide.with(holder.itemView.context)
+                .load(url)
+                .into(holder.rehber_pp)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -31,6 +38,7 @@ class rehber_adapter(private val userList: List<User>) : RecyclerView.Adapter<re
         val telefon : TextView = itemView.findViewById(R.id.textViewTelefon)
         val LayoutKisi : LinearLayout = itemView.findViewById(R.id.LayoutKisi)
         val UserId : TextView = itemView.findViewById(R.id.textUid)
+        val rehber_pp : CircleImageView = itemView.findViewById(R.id.rehber_pp)
 
         init {
             LayoutKisi.setOnClickListener {

@@ -78,7 +78,7 @@ class AyarlarActivity : AppCompatActivity() {
                 }
 
                 if (document != null && document.exists()) {
-                    val ProfilFoto = document.getString("profilFotoUrl") // Yeni profil fotoğrafının URL'sini alın
+                    val ProfilFoto = document.getString("profilFotoURL") // Yeni profil fotoğrafının URL'sini alın
 
                     // Profil fotoğrafını yükleyin
                     if (ProfilFoto != null) {

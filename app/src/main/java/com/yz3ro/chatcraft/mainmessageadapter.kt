@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 
@@ -23,17 +27,31 @@ class mainmessageadapter(private val userList: List<User>) : RecyclerView.Adapte
         holder.UserId.text = user.uid
         val lastMessage = user.lastMessage
         val lastMessageTime = user.lastMessageTime
+        user.profilFotoURL?.let { url ->
+            Glide.with(holder.itemView.context)
+                .load(url)
+                .into(holder.img_main)
+        }
+        val firestoreHelper = FirestoreHelper()
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 
-        if (lastMessage != null && lastMessageTime != null) {
-            val formattedTime = formatTime(lastMessageTime)
-            holder.lastMessage.text = "Son Mesaj: $lastMessage\nZaman: $formattedTime"
-        } else {
-            holder.lastMessage.text = "Henüz mesaj yok."
+        if (currentUserUid != null) {
+            firestoreHelper.getLastMessageAndTime(currentUserUid, user.uid) { lastMessage, lastMessageTime ->
+                // lastMessage ve lastMessageTime değerlerini kullanarak işlemleri gerçekleştir
+                // Örneğin, TextView'lara bu değerleri yerleştir
+                holder.lastMessage.text = lastMessage ?: "Son mesaj bulunamadı"
+                holder.lastMessageTime.text = formatTime(lastMessageTime)
+            }
         }
     }
-    private fun formatTime(time: String?): String {
-        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return sdf.format(time)
+    private fun formatTime(lastMessageTime: Date?): String {
+        // Burada lastMessageTime'ı istediğiniz formata dönüştürme işlemlerini yapabilirsiniz.
+        // Örneğin, SimpleDateFormat kullanabilirsiniz.
+        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+        return lastMessageTime?.let {
+            dateFormat.format(it)
+        } ?: ""
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +63,7 @@ class mainmessageadapter(private val userList: List<User>) : RecyclerView.Adapte
         val UserId : TextView = itemView.findViewById(R.id.textUid3)
         val lastMessage: TextView = itemView.findViewById(R.id.txt_lastmessage)
         val lastMessageTime: TextView = itemView.findViewById(R.id.txt_time)
+        val img_main : CircleImageView = itemView.findViewById(R.id.img_main)
 
         init {
             LayoutKisi.setOnClickListener {

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -128,7 +129,7 @@ class DuzenActivity : AppCompatActivity() {
 
             // Firestore belgesine profil fotoğrafı URL'sini ekleyin
             userDocRef
-                .update("profilFotoUrl", imageUrl)
+                .update("profilFotoURL", imageUrl)
                 .addOnSuccessListener {
                     // Başarılı
                     Toast.makeText(this, "Image Uploaded and URL Saved", Toast.LENGTH_SHORT).show()
@@ -136,6 +137,15 @@ class DuzenActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     // Hata
                     Toast.makeText(this, "Error Saving URL: $e", Toast.LENGTH_SHORT).show()
+                }
+            db.collection("kişiler").document(uid)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    val profilFotoURL = documentSnapshot.getString("profilFotoURL")
+                    val user = User(profilFotoURL)
+                }
+                .addOnFailureListener { exception ->
+                    // Hata durumunda işlemler
                 }
         }
     }
@@ -176,5 +186,5 @@ class DuzenActivity : AppCompatActivity() {
         }
     }
 
-
 }
+
