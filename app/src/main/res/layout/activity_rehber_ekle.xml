@@ -1,157 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DuzenActivity"
-    android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".DuzenActivity">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/imgb_geri"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="23dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="334dp"
-            android:layout_marginBottom="15dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_geri2" />
-    </RelativeLayout>
+            android:src="@drawable/ic_geri2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cons1">
 
         <TextView
             android:id="@+id/txt_ayarlar2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/laila"
             android:text="Kişi Ekle"
             android:textColor="#3F2E3E"
-            android:textSize="34sp" />
-    </RelativeLayout>
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout8"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cons2">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profil_foto1"
-            android:clickable="true"
-            app:civ_border_width="3dp"
-            app:civ_border_color="#FFFFFF"
-            android:layout_centerHorizontal="true"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="128dp"
-            android:layout_marginEnd="127dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bos_pp"/>
-    </RelativeLayout>
 
-    <RelativeLayout
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/countyCodePicker"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/edittext3"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp"
+            app:ccp_contentColor="#90CCC4C4"
+            app:ccp_defaultNameCode="TR"
+            app:ccp_showFlag="true"
+            app:ccp_showNameCode="false"
+            app:ccp_showPhoneCode="true"
+            app:ccp_textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextKisiAdi" />
+
+        <EditText
+            android:id="@+id/editTextTelefon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@+id/countyCodePicker"
+            android:background="@drawable/edit_text2"
+            android:ems="10"
+            android:hint="555 555 55 55"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/countyCodePicker"
+            app:layout_constraintTop_toBottomOf="@id/editTextKisiAdi" />
+
+        <EditText
+            android:id="@+id/editTextKisiAdi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text2"
+            android:ems="10"
+            android:hint="Adı"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
-
-                <EditText
-                    android:id="@+id/editTextKisiAdi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="9dp"
-                    android:background="@drawable/edit_text2"
-                    android:ems="10"
-                    android:hint="Adı"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="10dp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
-
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/countyCodePicker"
-                    android:layout_width="96dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginBottom="9dp"
-                    android:background="@drawable/edittext3"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="5dp"
-                    app:ccp_contentColor="#90CCC4C4"
-                    app:ccp_defaultNameCode="TR"
-                    app:ccp_showFlag="true"
-                    app:ccp_showNameCode="false"
-                    app:ccp_showPhoneCode="true"
-                    app:ccp_textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/editTextTelefon"
-                    android:layout_width="260dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="9dp"
-                    android:layout_toEndOf="@+id/countyCodePicker"
-                    android:background="@drawable/edit_text2"
-                    android:ems="10"
-                    android:hint="555 555 55 55"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="10dp" />
-            </RelativeLayout>
-
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
         <Button
             android:id="@+id/btnOnayla"
@@ -159,18 +130,12 @@
             android:layout_height="59dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="57dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginEnd="57dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginTop="20dp"
             android:text="KAYDET"
-            android:textColor="#FFFFFF" />
-    </RelativeLayout>
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
-
-    </RelativeLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -138,15 +138,6 @@ class DuzenActivity : AppCompatActivity() {
                     // Hata
                     Toast.makeText(this, "Error Saving URL: $e", Toast.LENGTH_SHORT).show()
                 }
-            db.collection("kişiler").document(uid)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    val profilFotoURL = documentSnapshot.getString("profilFotoURL")
-                    val user = User(profilFotoURL)
-                }
-                .addOnFailureListener { exception ->
-                    // Hata durumunda işlemler
-                }
         }
     }
     private fun updateUserDisplayName(yeniAd: String) {
@@ -183,8 +174,7 @@ class DuzenActivity : AppCompatActivity() {
                     // Hata durumu
                     Toast.makeText(this, "Kullanıcı adını güncelleme başarısız", Toast.LENGTH_SHORT).show()
                 }
+            }
         }
-    }
-
 }
 

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    android:orientation="vertical"
     tools:context=".NumActivity">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.02"
-        android:paddingTop="15dp">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/backButton"
@@ -22,73 +24,72 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="334dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
             android:background="@android:color/transparent"
             android:contentDescription="Geri"
             android:onClick="onBackPressed"
-            android:src="@drawable/ic_geri" />
+            android:src="@drawable/ic_geri"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.02">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cons1">
 
         <TextView
             android:id="@+id/txtkod1"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="66dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/krub"
-            android:paddingLeft="22dp"
             android:text="Numaranızı giriniz."
             android:textColor="#FFFFFF"
             android:textSize="32sp"
-            android:textStyle="normal" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.02">
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtkod2"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginEnd="22dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/krub"
-            android:paddingLeft="22dp"
             android:text="Numaranızı doğrulamak için size bir kod göndereceğiz."
             android:textColor="#FFFFFF"
             android:textSize="14sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtkod1" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="0dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp">
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cons">
 
         <com.hbb20.CountryCodePicker
             android:id="@+id/countyCodePicker"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginBottom="-2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/edittext1"
             android:paddingLeft="8dp"
             android:paddingTop="5dp"
@@ -97,7 +98,9 @@
             app:ccp_showFlag="true"
             app:ccp_showNameCode="false"
             app:ccp_showPhoneCode="true"
-            app:ccp_textSize="18sp" />
+            app:ccp_textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/txt_num"
@@ -105,7 +108,8 @@
             android:layout_height="48dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="22dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/edittext"
             android:ems="10"
             android:fontFamily="@font/krub"
@@ -115,14 +119,18 @@
             android:textColor="#AFA9A9"
             android:textColorHint="#90CCC4C4"
             android:textSize="18sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/countyCodePicker"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/imgbtn_ileri"
@@ -130,12 +138,14 @@
             android:layout_height="80dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="31dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:background="#00FFFFFF"
             android:backgroundTint="#00FFFFFF"
             android:contentDescription="İleri Git"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_ileri" />
 
-    </RelativeLayout>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

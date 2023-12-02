@@ -1,118 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/txt_ayarlar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/laila"
             android:text="Ayarlar"
             android:textColor="#3F2E3E"
-            android:textSize="34sp" />
-    </RelativeLayout>
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cons2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cons">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/info_foto"
+            android:layout_width="123dp"
+            android:layout_height="119dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bos_pp"
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.4">
+        <TextView
+            android:id="@+id/pp_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="ADINIZ"
+            app:layout_constraintStart_toEndOf="@+id/info_foto"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/info_foto"
-                    app:civ_border_width="3dp"
-                    app:civ_border_color="#FFFFFF"
-                    android:layout_width="123dp"
-                    android:layout_height="119dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="19dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/bos_pp"
-                    android:scaleType="centerCrop" />
-            </RelativeLayout>
+        <TextView
+            android:id="@+id/pp_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="NUMARANIZ"
+            app:layout_constraintStart_toEndOf="@+id/info_foto"
+            app:layout_constraintTop_toBottomOf="@+id/pp_ad" />
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.6">
+        <Button
+            android:id="@+id/profil_duzen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Profili Düzenle"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp"
+            app:layout_constraintStart_toEndOf="@+id/info_foto"
+            app:layout_constraintTop_toBottomOf="@+id/pp_num" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.1">
-
-                        <TextView
-                            android:id="@+id/pp_ad"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.1">
-
-                        <TextView
-                            android:id="@+id/pp_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5">
-
-                        <Button
-                            android:id="@+id/profil_duzen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Profili Düzenle"
-                            android:textColor="#FFFFFF"
-                            android:textSize="8sp" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cons2">
 
         <ImageButton
             android:id="@+id/img_bildirim"
@@ -127,10 +106,11 @@
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="59dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:layout_toStartOf="@+id/txt_bildirim"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_bildirim" />
 
         <TextView
@@ -140,16 +120,20 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="49dp"
-            android:layout_marginEnd="161dp"
-            android:layout_marginBottom="20dp"
-            android:text="BİLDİRİMLER" />
-    </RelativeLayout>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:text="BİLDİRİMLER"
+            app:layout_constraintStart_toEndOf="@+id/imgv_bildirim"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout9"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
         <ImageButton
             android:id="@+id/img_yardim"
@@ -165,10 +149,11 @@
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="72dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:layout_toStartOf="@+id/txt_yardim"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_yardim" />
 
         <TextView
@@ -178,10 +163,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="176dp"
-            android:layout_marginBottom="20dp"
-            android:text="YARDIM" />
+            android:text="YARDIM"
+            app:layout_constraintStart_toEndOf="@+id/imgv_yardim"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <View
             android:id="@+id/view"
@@ -190,16 +176,22 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentBottom="false"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
-            android:background="@drawable/cizgi" />
+            android:background="@drawable/cizgi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
 
         <ImageButton
             android:id="@+id/img_cikis"
@@ -210,14 +202,15 @@
 
         <ImageView
             android:id="@+id/imgv_cikis"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="83dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
             android:layout_toStartOf="@+id/txt_cikis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_cikis" />
 
         <TextView
@@ -227,35 +220,37 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="185dp"
-            android:layout_marginBottom="20dp"
             android:text="ÇIKIŞ"
-            android:textColor="#DF4F5F" />
+            android:textColor="#DF4F5F"
+            app:layout_constraintStart_toEndOf="@+id/imgv_cikis"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <View
             android:id="@+id/view2"
             android:layout_width="327dp"
             android:layout_height="1dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
-            android:background="@drawable/cizgi" />
+            android:background="@drawable/cizgi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_ayarlar"
+        app:itemTextColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/ic_ayarlar"
-            app:itemTextColor="#000000"
-            app:menu="@menu/menu" />
-
-    </RelativeLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
