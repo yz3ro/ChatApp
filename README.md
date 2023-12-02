@@ -25,16 +25,17 @@ When the app is first opened, users are greeted with a simple and user-friendly 
 
 The welcome screen also guides users to log in to the application. Through the secure login process provided by Firebase Authentication, users can easily create an account with their phone numbers and log into the app.
 
-![enteryourname](images/enteryourname.png)
-
 Here, we prompt the user to enter their name.
 
-![enteryournumber](images/enteryournumber.png)
+![enteryourname](images/enteryourname.png)
 
 On this page, we ask the user to select their country code and then enter their phone number.
 
-![enteryourverification](images/entertheverification.png)
+![enteryournumber](images/enteryournumber.png)
 
 On this page, we prompt the user to enter the verification code sent to their phone by Firebase.
+
+![enteryourverification](images/entertheverification.png)
+
 
 
