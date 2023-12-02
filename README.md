@@ -33,7 +33,7 @@ Here, we prompt the user to enter their name.
 
 On this page, we ask the user to select their country code and then enter their phone number.
 
-![enteryourverification](images/enteryourverification.png)
+![enteryourverification](images/entertheverification.png)
 
 On this page, we prompt the user to enter the verification code sent to their phone by Firebase.
 
