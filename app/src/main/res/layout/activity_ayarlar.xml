@@ -135,13 +135,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
-        <ImageButton
-            android:id="@+id/img_yardim"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFF"
-            android:onClick="onButtonClicked" />
-
 
         <ImageView
             android:id="@+id/imgv_yardim"
@@ -187,18 +180,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cikis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
-
-        <ImageButton
-            android:id="@+id/img_cikis"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFF"
-            android:onClick="onButtonClicked" />
 
         <ImageView
             android:id="@+id/imgv_cikis"

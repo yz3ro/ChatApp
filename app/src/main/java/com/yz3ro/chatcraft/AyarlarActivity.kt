@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
@@ -28,7 +29,7 @@ class AyarlarActivity : AppCompatActivity() {
         bottomNav.menu.findItem(R.id.navigation_settings).setIcon(R.drawable.dolu_ayarlar)
         bottomNav.menu.findItem(R.id.navigation_contacts).setIcon(R.drawable.bos_rehber)
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
-        val cikis = findViewById<ImageButton>(R.id.img_cikis)
+        val cikis = findViewById<ImageView>(R.id.imgv_cikis)
         val pp_ad = findViewById<TextView>(R.id.pp_ad)
         val pp_num = findViewById<TextView>(R.id.pp_num)
         val profil_foto = findViewById<CircleImageView>(R.id.info_foto) // Profil fotoğrafını göstereceğiniz ImageView
