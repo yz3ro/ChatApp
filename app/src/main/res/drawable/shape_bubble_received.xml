@@ -11,7 +11,7 @@
                 android:topRightRadius="16dp"
                 android:bottomLeftRadius="2dp"
                 android:bottomRightRadius="16dp" />
-            <solid android:color="#EFE1D1" />
+            <solid android:color="#CDB59D" />
         </shape>
     </item>
 </layer-list>
