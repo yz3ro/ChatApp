@@ -44,7 +44,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/laila"
                     android:paddingLeft="20dp"
-                    android:text="Basit ve"
+                    android:text="@string/basit_ve"
                     android:textColor="#FFFFFF"
                     android:textSize="36sp"
                     android:textStyle="normal" />
@@ -62,7 +62,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/laila"
                     android:paddingLeft="20dp"
-                    android:text="Kullanışlı"
+                    android:text="@string/kullan_l"
                     android:textColor="#FFFFFF"
                     android:textSize="36sp"
                     android:textStyle="normal" />
@@ -79,7 +79,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/laila"
                     android:paddingLeft="20dp"
-                    android:text="Mesajlaşma"
+                    android:text="@string/mesajla_ma"
                     android:textColor="#FFFFFF"
                     android:textSize="36sp"
                     android:textStyle="normal" />
@@ -96,7 +96,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/laila"
                     android:paddingLeft="20dp"
-                    android:text="Uygulaması"
+                    android:text="@string/uygulamas"
                     android:textColor="#FFFFFF"
                     android:textSize="36sp"
                     android:textStyle="normal" />
@@ -121,7 +121,7 @@
             android:layout_marginEnd="43dp"
             android:layout_marginBottom="61dp"
             android:backgroundTint="#D9D9D9"
-            android:text="Hadi Başlayalım!"
+            android:text="@string/hadi_ba_layal_m"
             android:textColor="#3F2E3E" />
 
     </RelativeLayout>

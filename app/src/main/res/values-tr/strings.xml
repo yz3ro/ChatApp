@@ -1,28 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">chatCraft</string>
     <string name="title_activity_chat">chatActivity</string>
-
-    <!-- MAİN ACTİVİTY -->
     <string name="basit_ve">Basit ve</string>
     <string name="kullan_l">Kullanışlı</string>
     <string name="mesajla_ma">Mesajlaşma</string>
     <string name="uygulamas">Uygulaması</string>
     <string name="hadi_ba_layal_m">Hadi Başlayalım!</string>
-    <!-- AD ACTİVİTY -->
     <string name="ad_n_z_giriniz">Adınızı giriniz.</string>
     <string name="ad_n_z">Adınız</string>
-    <!-- NUM ACTİVİTY -->
     <string name="numaran_z_giriniz">Numaranızı giriniz.</string>
     <string name="numaran_z_do_rulamak_i_in_size_bir_kod_g_nderece_iz">Numaranızı doğrulamak için size bir kod göndereceğiz.</string>
-    <!-- KOD ACTİVİTY -->
     <string name="do_rulama_kodunu_giriniz">Doğrulama Kodunu Giriniz.</string>
     <string name="kod_size_ula_mad_m">Kod size ulaşmadı mı?</string>
     <string name="tekrar_g_nder">Tekrar Gönder</string>
-    <!-- MESAJLAR ACTİVİTY -->
     <string name="mesajlar">Mesajlar</string>
-    <!-- REHBER ACTİVİTY -->
     <string name="rehber">Rehber</string>
-    <!-- AYARLAR ACTİVİTY -->
     <string name="ayarlar">Ayarlar</string>
     <string name="adiniz">ADINIZ</string>
     <string name="numaraniz">NUMARANIZ</string>
@@ -30,18 +23,13 @@
     <string name="b_ld_r_mler">BİLDİRİMLER</string>
     <string name="yardim">YARDIM</string>
     <string name="iki">ÇIKIŞ</string>
-    <!-- DUZEN ACTİVİTY -->
     <string name="profili_d_zenle1">Profili Düzenle</string>
     <string name="ad_n_z1">Adınız</string>
     <string name="kaydet">KAYDET</string>
-    <!-- INFO ACTİVİTY -->
     <string name="ki_iyi_sil">Kişiyi Sil</string>
     <string name="mesajlar_sil">Mesajları Sil</string>
-    <!-- REHBER EKLE ACTİVİTY -->
     <string name="ki_i_ekle">Kişi Ekle</string>
     <string name="ad">Adı</string>
     <string name="kaydet1">KAYDET</string>
     <string name="dil">Dil</string>
-
-
 </resources>

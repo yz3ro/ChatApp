@@ -30,22 +30,31 @@ class RehberEkleActivity : AppCompatActivity() {
             val countryCode = countryCodePicker.selectedCountryCodeWithPlus
             tam_num = "$countryCode$numara"
             val currentUser = FirebaseAuth.getInstance().currentUser
-            if(currentUser != null){
+
+            if (currentUser != null) {
                 db.collection("kullanicilar")
-                    .whereEqualTo("numara",tam_num)
+                    .whereEqualTo("numara", tam_num)
                     .get()
                     .addOnSuccessListener { documents ->
-                        if (documents.isEmpty){
-                            Toast.makeText(this,"Bu numara ile eşleşen kullanıcı bulunamadı .", Toast.LENGTH_SHORT).show()
-                        }else {
+                        if (documents.isEmpty) {
+                            Toast.makeText(this, "Bu numara ile eşleşen kullanıcı bulunamadı.", Toast.LENGTH_SHORT).show()
+                        } else {
                             for (document in documents) {
                                 val uid = document.getString("uid")
+                                val profilFotoUrl = document.getString("profilFotoURL")
+
                                 if (uid != null) {
                                     val kisi = hashMapOf(
                                         "ad" to kisiadi,
                                         "telefon" to tam_num,
                                         "uid" to uid
                                     )
+
+                                    // Kullanıcının profil fotoğrafı varsa, kişiye profil fotoğrafı ekleyin
+                                    if (profilFotoUrl != null) {
+                                        kisi["profilFotoURL"] = profilFotoUrl
+                                    }
+
                                     db.collection("kullanicilar")
                                         .document(currentUser.uid)
                                         .collection("kisiler")
@@ -56,20 +65,20 @@ class RehberEkleActivity : AppCompatActivity() {
                                         .addOnFailureListener { documentReference ->
                                             Log.e("dönüs", "Veri eklenirken hata oluştu:")
                                         }
-
                                 } else {
                                     Log.e("Hata", "Kullanıcı oturumu açık değil veya hata oluştu.")
                                 }
                             }
                         }
-                        }
-                    .addOnFailureListener {e->
+                    }
+                    .addOnFailureListener { e ->
                         Log.e("Hata", "Kişi aranırken hata oluştu: ${e.message}")
                     }
-                    }
-
-
-            intent = Intent(this,RehberActivity::class.java); startActivity(intent)
             }
+
+            intent = Intent(this, RehberActivity::class.java)
+            startActivity(intent)
         }
+
+    }
     }

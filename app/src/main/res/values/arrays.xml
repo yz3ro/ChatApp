@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language_values">
+        <item>en</item>
+        <item>tr</item>
+        <!-- Diğer desteklenen dilleri ekleyin -->
+    </string-array>
+    <string-array name="language_labels">
+        <item>English</item>
+        <item>Türkçe</item>
+        <!-- Diğer dillerin etiketlerini ekleyin -->
+    </string-array>
+</resources>

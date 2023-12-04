@@ -3,6 +3,7 @@ package com.yz3ro.chatcraft
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +37,14 @@ class MesajlarActivity : AppCompatActivity() {
         myAdapter = mainmessageadapter(userArrayList)
         recyclerView.adapter = myAdapter
         EventChangeListener()
+        val rec = intent.getStringExtra("rec")
+        val firestore = FirebaseFirestore.getInstance()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val userUID = currentUser?.uid
 
     }
+
+
     private fun EventChangeListener() {
         db = FirebaseFirestore.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser

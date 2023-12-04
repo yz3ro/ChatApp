@@ -19,7 +19,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="37dp"
         android:fontFamily="@font/laila"
-        android:text="Mesajlar"
+        android:text="@string/mesajlar"
         android:textColor="#3F2E3E"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"

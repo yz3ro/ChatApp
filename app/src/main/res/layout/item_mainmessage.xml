@@ -60,21 +60,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_main"
-        app:layout_constraintTop_toBottomOf="@+id/txt_adsoyad"
-        app:layout_constraintVertical_bias="0.387" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_adsoyad" />
 
     <TextView
         android:id="@+id/txt_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:text="time"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

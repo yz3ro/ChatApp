@@ -39,19 +39,9 @@ class DuzenActivity : AppCompatActivity() {
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
         profil_foto2.setOnClickListener { launchGallery() }
-        kaydet.setOnClickListener { uploadImage()
+        kaydet.setOnClickListener {
             val storageReference = FirebaseStorage.getInstance().reference
             val uid = FirebaseAuth.getInstance().currentUser?.uid
-            val profileImageRef = storageReference.child("profilFotoUrl/$uid.jpg")
-
-            profileImageRef.downloadUrl.addOnSuccessListener { uri ->
-                val downloadUrl = uri.toString()
-
-                // Glide kullanarak resmi ImageView'da gösterin
-                Glide.with(this)
-                    .load(downloadUrl)
-                    .into(profil_foto2)
-            }
             val yeniAd = yeni_ad.text.toString()
             if (yeniAd.isNotEmpty()) {
                 // Kullanıcı adı boş değilse Firestore'daki kullanıcı belgesini güncelle
@@ -61,84 +51,103 @@ class DuzenActivity : AppCompatActivity() {
                 Toast.makeText(this, "Kullanıcı adı boş olamaz", Toast.LENGTH_SHORT).show()
             }
         }
+        val db = FirebaseFirestore.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
 
-    }
+        if (user != null) {
+            val userId = user.uid
 
-    private fun launchGallery() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
-    }
+            val userDocRef = db.collection("kullanicilar").document(userId)
 
-    private fun uploadImage() {
-        if (filePath != null) {
-            val ref = storageReference?.child("uploads/" + UUID.randomUUID().toString())
-            val uploadTask = ref?.putFile(filePath!!)
+            userDocRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        // Firestore belgesi varsa, profilFotoURL alanını al
+                        val profilFotoUrl = documentSnapshot.getString("profilFotoURL")
 
-            val urlTask = uploadTask?.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-                if (!task.isSuccessful) {
-                    task.exception?.let {
-                        throw it
+                        // Şimdi Glide ile ImageView'a resmi yükle
+                        if (profilFotoUrl != null) {
+                            Glide.with(this)
+                                .load(profilFotoUrl)
+                                .into(profil_foto2)
+                        }
+                    } else {
+                        // Firestore belgesi yoksa, kullanıcıya bilgi ver
+                        Toast.makeText(this, "Profil fotoğrafı bulunamadı.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                return@Continuation ref.downloadUrl
-            })?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                    // Firebase Storage'dan URL'yi alın ve Firestore'a kaydedin
-                    val photoUrl = downloadUri.toString()
-                    saveImageUrlToFirestore(photoUrl)
-                } else {
-                    // Hata durumunu ele alabilirsiniz
-                    Toast.makeText(this, "Upload Failed", Toast.LENGTH_SHORT).show()
+                .addOnFailureListener { exception ->
+                    // Firestore'dan belge çekme sırasında bir hata oluştu
+                    Toast.makeText(this, "Hata: $exception", Toast.LENGTH_SHORT).show()
                 }
-            }?.addOnFailureListener {
-                // Hata durumunu ele alabilirsiniz
-                Toast.makeText(this, "Upload Failed", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "Please Upload an Image", Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun launchGallery() {
+        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
             if (data == null || data.data == null) {
                 return
             }
 
-            filePath = data.data
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, filePath)
-                val profil_foto2 = findViewById<ImageView>(R.id.profil_foto1)
-                profil_foto2.setImageBitmap(bitmap)
-            } catch (e: IOException) {
-                e.printStackTrace()
+            // Seçilen resmin Uri'sini al
+            val selectedImageUri: Uri = data.data!!
+
+            // Firestore'a kaydedilecek bir yol oluştur
+            storageReference = FirebaseStorage.getInstance().reference
+            val user = FirebaseAuth.getInstance().currentUser
+            user?.uid?.let { uid ->
+                val imagePath = "profilImages/$uid.jpg"
+                val imageRef = storageReference!!.child(imagePath)
+
+                // Resmi Firestore'a yükle
+                imageRef.putFile(selectedImageUri)
+                    .addOnSuccessListener { taskSnapshot ->
+                        // Yükleme başarılı oldu
+                        // Firestore'dan profil fotoğrafının URL'sini al
+                        imageRef.downloadUrl.addOnSuccessListener { uri ->
+                            val imageUrl = uri.toString()
+
+                            // Firestore'daki kullanıcının profil fotoğrafını güncelle
+                            updateImageUrlInFirestore(imageUrl)
+                        }
+                    }
+                    .addOnFailureListener { e ->
+                        // Yükleme başarısız oldu
+                        Toast.makeText(this, "Error uploading image: $e", Toast.LENGTH_SHORT).show()
+                    }
             }
         }
     }
-
-    private fun saveImageUrlToFirestore(imageUrl: String) {
+    private fun updateImageUrlInFirestore(imageUrl: String) {
         val db = FirebaseFirestore.getInstance()
         val user = FirebaseAuth.getInstance().currentUser
         user?.uid?.let { uid ->
             // Kullanıcının UID'sini kullanarak Firestore belgesini alın
             val userDocRef = db.collection("kullanicilar").document(uid)
 
-            // Firestore belgesine profil fotoğrafı URL'sini ekleyin
+            // Yeni verileri hazırla
+            val updatedData = hashMapOf(
+                "profilFotoURL" to imageUrl
+            )
+            // Firestore belgesini güncelle
             userDocRef
-                .update("profilFotoURL", imageUrl)
+                .update(updatedData as Map<String, Any>)
                 .addOnSuccessListener {
                     // Başarılı
-                    Toast.makeText(this, "Image Uploaded and URL Saved", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Profile photo updated", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     // Hata
-                    Toast.makeText(this, "Error Saving URL: $e", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error updating profile photo: $e", Toast.LENGTH_SHORT).show()
                 }
         }
+
     }
     private fun updateUserDisplayName(yeniAd: String) {
         val kullanici = FirebaseAuth.getInstance().currentUser

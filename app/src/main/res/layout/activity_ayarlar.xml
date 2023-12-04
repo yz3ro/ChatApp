@@ -20,7 +20,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/laila"
-            android:text="Ayarlar"
+            android:text="@string/ayarlar"
             android:textColor="#3F2E3E"
             android:textSize="34sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:text="ADINIZ"
+            android:text="@string/adiniz"
             app:layout_constraintStart_toEndOf="@+id/info_foto"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:text="NUMARANIZ"
+            android:text="@string/numaraniz"
             app:layout_constraintStart_toEndOf="@+id/info_foto"
             app:layout_constraintTop_toBottomOf="@+id/pp_ad" />
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Profili Düzenle"
+            android:text="@string/profili_d_zenle"
             android:textColor="#FFFFFF"
             android:textSize="8sp"
             app:layout_constraintStart_toEndOf="@+id/info_foto"
@@ -89,6 +89,7 @@
         android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cons2">
@@ -122,7 +123,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:text="BİLDİRİMLER"
+            android:text="@string/b_ld_r_mler"
             app:layout_constraintStart_toEndOf="@+id/imgv_bildirim"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -158,7 +159,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:text="YARDIM"
+            android:text="@string/yardim"
             app:layout_constraintStart_toEndOf="@+id/imgv_yardim"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -209,7 +210,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:text="ÇIKIŞ"
+            android:text="@string/iki"
             android:textColor="#DF4F5F"
             app:layout_constraintStart_toEndOf="@+id/imgv_cikis"
             app:layout_constraintTop_toBottomOf="@+id/view2" />

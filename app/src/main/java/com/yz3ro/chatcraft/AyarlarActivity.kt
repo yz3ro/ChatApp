@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -69,29 +69,30 @@ class AyarlarActivity : AppCompatActivity() {
         startActivity(intent)}
         if (currentUser != null) {
             val userId = currentUser.uid
-            val userRef = db.collection("kullanicilar").document(userId)
 
-            // Firestore'dan kullanıcı belgesini dinle
-            userRef.addSnapshotListener { document, exception ->
-                if (exception != null) {
-                    // Hata durumu
-                    return@addSnapshotListener
-                }
+            val userDocRef = db.collection("kullanicilar").document(userId)
 
-                if (document != null && document.exists()) {
-                    val ProfilFoto = document.getString("profilFotoURL") // Yeni profil fotoğrafının URL'sini alın
+            userDocRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        // Firestore belgesi varsa, profilFotoURL alanını al
+                        val profilFotoUrl = documentSnapshot.getString("profilFotoURL")
 
-                    // Profil fotoğrafını yükleyin
-                    if (ProfilFoto != null) {
-                        // Glide ile yeni URL'yi kullanarak profil fotoğrafını güncelleyin
-                        Glide.with(this)
-                            .load(ProfilFoto)
-                            .into(profil_foto)
+                        // Şimdi Glide ile ImageView'a resmi yükle
+                        if (profilFotoUrl != null) {
+                            Glide.with(this)
+                                .load(profilFotoUrl)
+                                .into(profil_foto)
+                        }
+                    } else {
+                        // Firestore belgesi yoksa, kullanıcıya bilgi ver
+                        Toast.makeText(this, "Profil fotoğrafı bulunamadı.", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-        } else {
-            // Kullanıcı oturum açmamış
+                .addOnFailureListener { exception ->
+                    // Firestore'dan belge çekme sırasında bir hata oluştu
+                    Toast.makeText(this, "Hata: $exception", Toast.LENGTH_SHORT).show()
+                }
         }
         cikis.setOnClickListener {  val alertDialogBuilder = AlertDialog.Builder(this)
             alertDialogBuilder.setTitle("Çıkış Onayı")

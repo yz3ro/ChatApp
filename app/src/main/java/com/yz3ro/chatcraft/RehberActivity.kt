@@ -40,10 +40,6 @@ class RehberActivity : AppCompatActivity() {
         myAdapter = rehber_adapter(userArrayList)
         recyclerView.adapter = myAdapter
         EventChangeListener()
-
-
-
-
     }
 
     private fun EventChangeListener() {

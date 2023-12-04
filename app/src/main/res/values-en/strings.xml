@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">chatCraft</string>
+    <string name="title_activity_chat">chatActivity</string>
+    <string name="basit_ve">Simple and</string>
+    <string name="kullan_l">User-friendly</string>
+    <string name="mesajla_ma">Messaging</string>
+    <string name="uygulamas">Application</string>
+    <string name="hadi_ba_layal_m">Let\'s Start!</string>
+    <string name="ad_n_z_giriniz">Enter your name.</string>
+    <string name="ad_n_z">Your name</string>
+    <string name="numaran_z_giriniz">Enter your number.</string>
+    <string name="numaran_z_do_rulamak_i_in_size_bir_kod_g_nderece_iz">We will send you a code to verify your number.</string>
+    <string name="do_rulama_kodunu_giriniz">Enter the verification code.</string>
+    <string name="kod_size_ula_mad_m">Didn\'t the code reach you?</string>
+    <string name="tekrar_g_nder">Resend</string>
+    <string name="mesajlar">Messages</string>
+    <string name="rehber">Contacts</string>
+    <string name="ayarlar">Settings</string>
+    <string name="adiniz">YOUR NAME</string>
+    <string name="numaraniz">YOUR NUMBER</string>
+    <string name="profili_d_zenle">Edit Profile</string>
+    <string name="b_ld_r_mler">NOTIFICATIONS</string>
+    <string name="yardim">HELP</string>
+    <string name="iki">LOG OUT</string>
+    <string name="profili_d_zenle1">Edit Profile</string>
+    <string name="ad_n_z1">Your name</string>
+    <string name="kaydet">SAVE</string>
+    <string name="ki_iyi_sil">Delete Contact</string>
+    <string name="mesajlar_sil">Delete Messages</string>
+    <string name="ki_i_ekle">Add Contact</string>
+    <string name="ad">Name</string>
+    <string name="kaydet1">SAVE</string>
+    <string name="dil">Language</string>
+</resources>

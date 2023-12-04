@@ -8,8 +8,10 @@ import androidx.appcompat.app.AlertDialog
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class InfoActivity : AppCompatActivity() {
     private lateinit var db : FirebaseFirestore
@@ -47,27 +49,36 @@ class InfoActivity : AppCompatActivity() {
                 }
         }
         infomsg_del.setOnClickListener {
-            val query =  db.collection("chats")
-            query.get()
-                .addOnSuccessListener { documents ->
-                    if(documents.isEmpty()){
-                        Log.d("hata ","sorgu başarısız")
-                    }
-                    else{
-                        for(document in documents){
-                            db.collection("chats").document("$userUID-$rec")
-                                .delete()
-                                .addOnSuccessListener {
-                                    Log.d("Firebase", "Belge başarıyla silindi.")
-                                    intent = Intent(this,RehberActivity::class.java)
-                                    startActivity(intent)
-                                }
-                                .addOnFailureListener { exception ->
-                                    Log.e("Firebase", "Belge silme hatası: ${exception.message}")
-                                }
-                        }
+            val firestore = FirebaseFirestore.getInstance()
+            val chatRef = firestore.collection("chats").document("$userUID-$rec").collection("messages")
+            chatRef.get()
+                .addOnSuccessListener { querySnapshot ->
+                    for (document in querySnapshot.documents) {
+                        // Her belgeyi sil
+                        document.reference.delete()
                     }
                 }
+                .addOnFailureListener { e ->
+                    // Hata durumunda yapılacak işlemler
+
+                }
+            val chatRef2 = firestore.collection("chats").document("$rec-$userUID").collection("messages")
+            chatRef2.get()
+                .addOnSuccessListener { querySnapshot ->
+                    for (document in querySnapshot.documents) {
+                        // Her belgeyi sil
+                        document.reference.delete()
+                    }
+                    Toast.makeText(this,"mesaj başarıyla silindi",Toast.LENGTH_SHORT).show()
+                    intent = Intent(this,MesajlarActivity::class.java)
+                    intent.putExtra(rec,"rec")
+                    startActivity(intent)
+                }
+                .addOnFailureListener { e ->
+                    // Hata durumunda yapılacak işlemler
+
+                }
+
 
         }
         info_del.setOnClickListener {
@@ -94,7 +105,7 @@ class InfoActivity : AppCompatActivity() {
                                         .delete()
                                         .addOnSuccessListener {
                                             Log.d("Firebase", "Belge başarıyla silindi.")
-                                            intent = Intent(this,RehberActivity::class.java)
+                                            intent = Intent(this,MesajlarActivity::class.java)
                                             startActivity(intent)
                                         }
                                         .addOnFailureListener { exception ->
