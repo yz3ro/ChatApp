@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -25,7 +26,6 @@ class InfoActivity : AppCompatActivity() {
         val info_pp = findViewById<ImageView>(R.id.info_foto)
         info_back.setOnClickListener { onBackPressed() }
         val rec = intent.getStringExtra("rec")
-
         db = FirebaseFirestore.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userUID = currentUser?.uid
@@ -39,8 +39,12 @@ class InfoActivity : AppCompatActivity() {
                     for (document in documents) {
                         val ad = document.getString("ad")
                         val telefon = document.getString("telefon")
+                        val pp = document.getString("profilFotoURL")
                         info_name.text = ad.toString()
                         info_num.text = telefon.toString()
+                        Glide.with(this)
+                            .load(pp)
+                            .into(info_pp)
                     }
 
                 }
